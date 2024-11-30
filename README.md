@@ -1,1 +1,1 @@
-# Plant-Leaf-Disease-Prediction
+# Plant-Leaf-Disease-Classification
