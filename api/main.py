@@ -45,7 +45,8 @@ def read_file_as_image(data) -> np.ndarray:
 @app.post("/predict")
 async def predict(file: UploadFile=File(...)):
     image = read_file_as_image(await file.read())
-    img_batch = np.expand_dims(image, 0)
+    image_resized = tf.image.resize(image, (256, 256))
+    img_batch = np.expand_dims(image_resized, 0)
     predictions = model.predict(img_batch)
     predicted_class = class_names[np.argmax(predictions[0])]
     confidence = np.max(predictions[0])
