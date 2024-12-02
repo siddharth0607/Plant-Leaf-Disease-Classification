@@ -61,7 +61,7 @@ const useStyles = () => ({
     color: "#be6a77",
   },
   imageCardEmpty: {
-    backgroundColor: "#f5f5f5", // Ensure it's styled when empty
+    backgroundColor: "#f5f5f5",
   },
 });
 
@@ -72,8 +72,8 @@ export const ImageUpload = () => {
   const [data, setData] = useState();
   const [image, setImage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [info, setInfo] = useState(""); // To store data fetched from GET endpoint
-  const [error, setError] = useState(null); // To store any errors during fetch
+  const [info, setInfo] = useState("");
+  const [error, setError] = useState(null);
 
   const getData = async () => {
     try {
@@ -88,7 +88,7 @@ export const ImageUpload = () => {
   };
 
   useEffect(() => {
-    getData(); // Fetch server info on component mount
+    getData();
   }, []);
 
   const sendFile = async () => {
@@ -149,7 +149,7 @@ export const ImageUpload = () => {
 
   useEffect(() => {
     if (preview) {
-      sendFile(); // Trigger file upload when preview is set
+      sendFile();
     }
   }, [preview]);
 
@@ -169,16 +169,18 @@ export const ImageUpload = () => {
     <React.Fragment>
       <Container
         style={{
-          backgroundImage:
-            "url('https://c4.wallpaperflare.com/wallpaper/108/913/128/calm-clouds-countryside-farm-wallpaper-preview.jpg')",
-          backgroundSize: "cover", // Ensure the background covers the entire screen
+          backgroundImage: "url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8yN19waG90b19vZl93aWRlX2Nvcm5fZmllbGRfc3VubnlfZGF5X3RvcF92aWV3XzE4NDQ4MDM2LWVjM2YtNGU4YS1iODAwLWQ4MjlhN2E5YTc1Yl8xLmpwZw.jpg')",
+          backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "100vh", // Ensure full height of the viewport
-          display: "flex", // Flex container to align content vertically
-          justifyContent: "center", // Center items horizontally
-          alignItems: "center", // Center items vertically
-          width: "100vw", // Ensure full width of the viewport
-          maxWidth: "100vw", // Prevent width expansion beyond viewport width
+          backgroundRepeat: "no-repeat",
+          minHeight: "100vh",
+          width: "100vw",
+          maxWidth: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: 0,
+          margin: 0,
         }}
         maxWidth={false}
         disableGutters
@@ -188,15 +190,12 @@ export const ImageUpload = () => {
           direction="column"
           justifyContent="center"
           alignItems="center"
-          spacing={2}
           style={{
-            minHeight: "80vh", // Minimum height to avoid shrinking
-            width: "100%", // Ensure the grid takes full width
-            maxWidth: "800px", // Set a fixed width for the content
-            display: "flex",
-            flexDirection: "column", // Align children vertically
-            justifyContent: "center", // Center the content vertically
-            textAlign: "center",
+            minHeight: "100vh",
+            width: "100%",
+            maxWidth: "800px",
+            margin: 0,
+            padding: "20px",
           }}
         >
           <Grid item xs={12} style={{ width: "100%" }}>
@@ -205,9 +204,10 @@ export const ImageUpload = () => {
               style={{
                 minHeight: "400px",
                 width: "100%",
-                maxWidth: "600px", // Set max width to avoid stretching
-                height: "auto", // Allow height to grow if necessary
-                padding: "20px", // Add padding for content inside the card
+                maxWidth: "600px",
+                height: "auto",
+                padding: "20px",
+                margin: "auto",
               }}
             >
               {!image && (
@@ -221,13 +221,17 @@ export const ImageUpload = () => {
                         textAlign: "center",
                         color: "#666666",
                         cursor: "pointer",
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
                       },
                     })}
                   >
                     <input {...getInputProps()} />
                     <Typography variant="h6">
-                      Drag and drop an image of a potato plant leaf to process,
-                      or click to select one
+                      Upload an image of a potato or plant leaf to analyze. Drag and drop your file here, or click to browse and select one
                     </Typography>
                   </div>
                 </CardContent>
@@ -257,7 +261,7 @@ export const ImageUpload = () => {
           </Grid>
 
           {data && (
-            <Grid item>
+            <Grid item style={{ marginTop: "20px" }}>
               <ColorButton variant="contained" onClick={clearData}>
                 Clear
               </ColorButton>
