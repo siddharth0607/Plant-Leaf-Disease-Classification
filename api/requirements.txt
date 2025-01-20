@@ -5,7 +5,7 @@ tensorflow==2.16.1
 pillow
 python-multipart
 fastapi
-uvicorn
+uvicorn[gunicorn]
 pyopenssl
 urllib3==1.26.18
 requests
