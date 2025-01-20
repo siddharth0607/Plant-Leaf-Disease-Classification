@@ -169,7 +169,7 @@ export const ImageUpload = () => {
     <React.Fragment>
       <Container
         style={{
-          backgroundImage: "url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8yN19waG90b19vZl93aWRlX2Nvcm5fZmllbGRfc3VubnlfZGF5X3RvcF92aWV3XzE4NDQ4MDM2LWVjM2YtNGU4YS1iODAwLWQ4MjlhN2E5YTc1Yl8xLmpwZw.jpg')",
+          backgroundImage: "url('/dan-meyers-IQVFVH0ajag-unsplash.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
