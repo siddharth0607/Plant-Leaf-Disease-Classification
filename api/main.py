@@ -20,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = tf.keras.models.load_model(r"E:\Plant-Leaf-Disease-Prediction\saved_models\model_v1.h5")
+model = tf.keras.models.load_model("../saved_models/model_v1.h5")
 class_names = [
     'Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy',
     'Tomato___Bacterial_spot', 'Tomato___Early_blight', 'Tomato___Late_blight',
