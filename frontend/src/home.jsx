@@ -67,6 +67,11 @@ const useStyles = () => ({
 
 export const ImageUpload = () => {
   const classes = useStyles();
+
+  const API_BASE_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:8000'
+    : 'http://65.0.6.249:8000';
+
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
   const [data, setData] = useState();
@@ -77,7 +82,7 @@ export const ImageUpload = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/info");
+      const response = await axios.get(`${API_BASE_URL}/info`);
       if (response.status === 200) {
         setInfo(response.data.message);
       }
@@ -98,7 +103,7 @@ export const ImageUpload = () => {
       try {
         setIsLoading(true);
         const res = await axios.post(
-          "http://localhost:8000/predict",
+          `${API_BASE_URL}/predict`,
           formData,
           {
             headers: {
@@ -106,6 +111,7 @@ export const ImageUpload = () => {
             },
           }
         );
+
         if (res.status === 200) {
           setData(res.data);
         }
