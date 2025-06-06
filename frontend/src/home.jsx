@@ -80,28 +80,15 @@ export const ImageUpload = () => {
   const [info, setInfo] = useState("");
   const [error, setError] = useState(null);
 
-  const getData = async () => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}/info`);
-      if (response.status === 200) {
-        setInfo(response.data.message);
-      }
-    } catch (err) {
-      console.error("Error fetching data:", err);
-      setError("Failed to fetch data from the server.");
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   const sendFile = async () => {
     if (image && selectedFile) {
       let formData = new FormData();
       formData.append("file", selectedFile);
+
       try {
         setIsLoading(true);
+        console.log("Uploading to:", `${API_BASE_URL}/predict`);
+
         const res = await axios.post(
           `${API_BASE_URL}/predict`,
           formData,
@@ -109,14 +96,25 @@ export const ImageUpload = () => {
             headers: {
               "Content-Type": "multipart/form-data",
             },
+            timeout: 15000,
           }
         );
 
+        console.log("Response received:", res);
+
         if (res.status === 200) {
           setData(res.data);
+        } else {
+          console.error("Unexpected response status:", res.status);
         }
       } catch (error) {
-        console.error("Error uploading image:", error);
+        if (error.response) {
+          console.error("Server error response:", error.response.data);
+        } else if (error.request) {
+          console.error("No response received:", error.request);
+        } else {
+          console.error("Error setting up request:", error.message);
+        }
       } finally {
         setIsLoading(false);
       }
