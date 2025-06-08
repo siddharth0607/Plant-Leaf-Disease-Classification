@@ -70,7 +70,7 @@ export const ImageUpload = () => {
 
   const API_BASE_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:8000'
-    : 'http://65.0.6.249:8000';
+    : 'http://65.0.19.126:8000';
 
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
