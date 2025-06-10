@@ -5,6 +5,7 @@ import numpy as np
 from io import BytesIO
 from PIL import Image
 import tensorflow as tf
+import os
 
 app = FastAPI()
 
@@ -22,7 +23,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = tf.keras.models.load_model("../saved_models/model_v1.h5")
+model_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "saved_models", "model_v1.h5")
+model = tf.keras.models.load_model(model_path)
+
 class_names = [
     'Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy',
     'Tomato___Bacterial_spot', 'Tomato___Early_blight', 'Tomato___Late_blight',

@@ -90,7 +90,7 @@ export const ImageUpload = () => {
         console.log("Uploading to:", `${API_BASE_URL}/predict`);
 
         const res = await axios.post(
-          `${API_BASE_URL}/predict`,
+          `/predict`,
           formData,
           {
             headers: {
@@ -235,7 +235,7 @@ export const ImageUpload = () => {
                   >
                     <input {...getInputProps()} />
                     <Typography variant="h6">
-                      Upload an image of a potato or plant leaf to analyze. Drag and drop your file here, or click to browse and select one
+                      Upload an image of a potato or tomato leaf to analyze. Drag and drop your file here, or click to browse and select an image.
                     </Typography>
                   </div>
                 </CardContent>
